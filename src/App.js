@@ -1,23 +1,36 @@
 import logo from './logo.svg';
+import react, {useState} from 'react';
 import './App.css';
 
 function App() {
+const btext = "Dark Mode" 
+const [buttonText, setButtonText] = useState(btext);
+
+const ptext = "Light Mode" 
+const [paraText, setpText] = useState(ptext);
+
+const [style, setStyle] = useState("cont");
+function toggleButton() {
+  if(buttonText=="Light Mode"){
+    setButtonText("Dark Mode");
+    setpText('Light Mode');
+    changeStyle('cont');
+  }else{
+    setButtonText("Light Mode");
+    setpText('Dark Mode');
+    changeStyle('cont2');
+  }
+}
+const changeStyle = (colorname) => {
+  setStyle(colorname);
+};
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={toggleButton}>{buttonText}</button>
+      <div className={style}>
+        <h1>This is {paraText}</h1>
+      </div>
     </div>
   );
 }
